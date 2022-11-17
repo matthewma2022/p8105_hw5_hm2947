@@ -174,7 +174,7 @@ sim_t_test = function(n = 30, mu, sigma = 5) {
     select(estimate, p.value)
 }
 
-
+set.seed(1)
 sim_df0 = 
   expand_grid(
     mu = 0,
