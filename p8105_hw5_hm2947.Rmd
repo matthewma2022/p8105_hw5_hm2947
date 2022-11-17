@@ -83,15 +83,15 @@ homicide_raw <- read_csv("https://raw.githubusercontent.com/washingtonpost/data-
   mutate(
     state = toupper(state),
     city_state = str_c(city, state, sep = ",") %>% 
-    str_replace("Tulsa, AL", "Tulsa, OK"))
+    str_replace("Tulsa,AL","Tulsa,OK"))
+homicide_raw
     
 homicide_tidy = 
   homicide_raw %>% 
   mutate(
-    status = ifelse(
-    disposition == "Closed without arrest" | disposition == "Open/No arrest", "Solved", "Unsolved" )) %>% 
+    status = ifelse(disposition != "Closed by arrest", "unsolved", "solved")) %>% 
   group_by(city_state) %>% 
-  summarise(n_unsolved = sum(status == "Unsolved"),
+  summarise(n_unsolved = sum(status == "unsolved"),
             n_total = n())
 
 homicide_tidy
