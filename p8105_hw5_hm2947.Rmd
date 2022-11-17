@@ -77,7 +77,7 @@ This plot suggests high within-subject correlation -- subjects who start above a
 
 ### Data cleaning and tidying process
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 homicide_raw <- read_csv("https://raw.githubusercontent.com/washingtonpost/data-homicides/master/homicide-data.csv") %>% 
   janitor::clean_names() %>%
   mutate(
@@ -195,7 +195,6 @@ sim_df =
 
 sim_df
 
-
 ```
 
 
@@ -222,6 +221,8 @@ sim_df %>%
   )
 
 ```
+
+According to the plot, as the true mean increases from 1 to 6, the proportion of rejected null also increase from approximately 0.2 to 1 following a rapid increase from x = 1 to x = 3. Then a slow increase until it has reached the maximum 1. The larger the effect size, the greater the power. 
 
 ### Making two plots of average estimate comparing all data and those with null rejected.
 
@@ -257,7 +258,7 @@ plot_2 =
 
 plot_1 + plot_2
 
-
 ```
 
+For the rejected null samples the sample average is barely equal to the true mean when the true mean is smaller and equal to 3. The sample average is higher than the true mean when the true mean increases pass 3. The reason for this is because the probability of rejecting the null hypothesis increases with increased effect size. As samples with higher true means are simulated, more effects are applied.
 
